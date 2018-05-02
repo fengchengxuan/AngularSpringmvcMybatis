@@ -13,12 +13,12 @@
         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd  
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">    
         
-	<!-- 自动扫描 -->
+
 	<context:component-scan base-package="com.hin.dao" />
 	<context:component-scan base-package="com.hin.service" />
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 	
-	<!-- 配置数据源 -->
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${driver}"/>
@@ -27,30 +27,30 @@
 		<property name="password" value="${password}"/>
 	</bean>
 
-	<!-- 配置mybatis的sqlSessionFactory -->
+	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!-- 自动扫描mappers.xml文件 ，要加上classpath:com/...-->
+		
 		<property name="mapperLocations" value="classpath:com/hin/mappers/*.xml"></property>
-		<!-- mybatis配置文件 -->
+		
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 	</bean>
 
-	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.hin.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 
-	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<!-- 配置事务通知属性 -->  
+	
     <tx:advice id="txAdvice" transaction-manager="transactionManager">  
-        <!-- 定义事务传播属性 -->  
+       
         <tx:attributes>  
             <tx:method name="insert*" propagation="REQUIRED" />  
             <tx:method name="update*" propagation="REQUIRED" />  
@@ -69,7 +69,7 @@
         </tx:attributes>  
     </tx:advice>  
   
-    <!-- 配置事务切面 -->  
+    
     <aop:config>  
         <aop:pointcut id="serviceOperation"  
             expression="execution(* com.hin.service.*.*(..))" />  
