@@ -16,14 +16,15 @@
 	<!-- 自动扫描 -->
 	<context:component-scan base-package="com.hin.dao" />
 	<context:component-scan base-package="com.hin.service" />
+	<context:property-placeholder location="classpath:jdbc.properties"/>
 	
 	<!-- 配置数据源 -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/weibo"/>
-		<property name="username" value="root"/>
-		<property name="password" value="root"/>
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${username}"/>
+		<property name="password" value="${password}"/>
 	</bean>
 
 	<!-- 配置mybatis的sqlSessionFactory -->
