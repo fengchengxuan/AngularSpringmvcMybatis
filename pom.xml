@@ -160,6 +160,11 @@
   <build>  
     <finalName>AngularSpringmvcMybatis</finalName>  
 	<resources>  
+		
+      <resource>  
+        <directory>src/main/resources</directory>  
+      </resource>  
+		
 	  <resource>  
 	    <targetPath>com/hin/mappers</targetPath>  
 	    <filtering>true</filtering>  
